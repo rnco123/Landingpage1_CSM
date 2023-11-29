@@ -10,7 +10,7 @@ type HeroProps = {
 const Hero = ({ heroText, location, heroTextConitnued }: HeroProps) => {
   const {t} = useTranslation();
   return (
-    <div className="w-full h-[95vh] flex justify-center items-center bg-[#F9F8F6]">
+    <div className="w-full  flex justify-center items-center bg-[#F9F8F6]">
       <div
         className="w-full h-full flex justify-center items-center"
         style={{
@@ -19,8 +19,8 @@ const Hero = ({ heroText, location, heroTextConitnued }: HeroProps) => {
           backgroundPosition: "10% 50%",
         }}
       >
-        <div className="w-[95%] lg:w-[90%] max-w-[1600px] flex flex-col-reverse lg:flex-row py-20">
-          <div className="relative flex-1 flex gap-8 flex-col">
+        <div className="w-[95%] lg:w-[90%] max-w-[1600px] flex flex-col-reverse lg:flex-row ">
+          <div className="relative flex-1 flex gap-8 flex-col justify-center">
             <h3 className="text-4xl font-bold text-[#333333] leading-snug lg:leading-normal">
               {heroText} <span className="text-[#D01717]">{location}</span>
               {heroTextConitnued}
@@ -40,8 +40,9 @@ const Hero = ({ heroText, location, heroTextConitnued }: HeroProps) => {
               </button>
             </div>
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 flex items-end justify-end"><img className="" src="/drImg2.png" alt="" /></div>
         </div>
+        <div></div>
       </div>
     </div>
   );
