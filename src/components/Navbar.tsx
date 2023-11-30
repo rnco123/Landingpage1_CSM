@@ -45,8 +45,8 @@ const Navbar = () => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {/* Display the flag based on the selected language */}
-        {locale === 'en' && <img src="/USA.png" className="h-6 w-6" alt="English" />}
-        {locale === 'es' && <img src="/spain.png" className="h-6 w-6" alt="Spanish" />}
+        {locale === 'en' &&<span className="flex items-center gap-3"> <img src="/USA.png" className="h-6 w-6" alt="English" /> English  </span> }
+        {locale === 'es' && <span className="flex items-center gap-3"><img src="/spain.png" className="h-6 w-6" alt="Spanish" />Spanish</span>}
         <ChevronDown className="text-[#333333]" size={20} />
       </span>
 

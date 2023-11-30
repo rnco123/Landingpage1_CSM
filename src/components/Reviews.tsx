@@ -40,8 +40,8 @@ const Reviews = () => {
         <div className="flex max-w-[800px] w-full justify-between items-start mb-16">
           <ChevronLeft className="text-[#525252]" size={50} />
           <div className="flex flex-col items-center gap-8">
-            <span className="text-2xl font-semibold">
-              Happy, Healthy Patients
+            <span className="text-2xl font-semibold text-[#000000]">
+              {t('happyHealthyPatients')}
             </span>
             <div className="w-24 flex justify-between items-center">
               <div className="h-4 w-4 bg-[#D01717] rounded-full" />
