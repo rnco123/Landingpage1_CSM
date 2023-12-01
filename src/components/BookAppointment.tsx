@@ -21,27 +21,28 @@ type BookAppointmentProps = {
 
 const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
   const { t } = useTranslation();
-  const [phonenumber, setPhoneNumber] = useState();
-  const [email, setEmail] = useState();
-  const [treatment, setTreatment] = useState();
-  const [bookAppointment, setBookAppointment] = useState();
-  const [healthTreatment, setHealthTreatment] = useState();
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
+  const [phonenumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [bookAppointment, setBookAppointment] = useState("");
+  const [healthTreatment, setHealthTreatment] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    if (email !== "" && phonenumber !== "") {
+  const handleSubmit = async () => {
+    console.log("in submit");
+    try {
       // setItems([...items, newItem]);
-      await addDoc(collection(db, "items"), {
+      await addDoc(collection(db, "appointment"), {
         _phonenumber: phonenumber,
         _email: email,
-        _treatment: treatment,
         _bookAppointment: bookAppointment,
         _healthTreatment: healthTreatment,
         _date: date,
         _time: time,
       });
+      console.log("submitted");
+    } catch (err) {
+      console.log("error in submit", err);
     }
   };
   const services = [
@@ -186,7 +187,7 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
               <div className="w-full flex justify-center pr-10">
                 <button
                   className="py-4 px-16 text-white font-medium text-sm bg-[#D01717] rounded-lg"
-                  onClick={(e: any) => handleSubmit}
+                  onClick={handleSubmit}
                 >
                   {t("submit")}
                 </button>
