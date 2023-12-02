@@ -14,8 +14,9 @@ const WhyUs = ({ name, location }: WhyUsProps) => {
   //choose the screen size
   const handleResize = () => {
     // Your code that uses window
-
-    setSize(window.innerWidth);
+    if (typeof window !== "undefined") {
+      setSize(window.innerWidth);
+    }
   };
 
   // create an event listener
