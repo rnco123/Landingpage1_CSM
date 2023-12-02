@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import "regenerator-runtime/runtime";
 import Blogs from "@/components/Blogs";
 import BookAppointment from "@/components/BookAppointment";
 import Footer from "@/components/Footer";
@@ -13,7 +14,7 @@ import { useTranslation } from "next-i18next";
 
 const SecondMainPage = () => {
   const [locale, setLocale] = useState(i18n.language);
-  
+
   useEffect(() => {
     const handleLanguageChange = (lng: string) => setLocale(lng);
     i18n.on("languageChanged", handleLanguageChange);
@@ -23,31 +24,30 @@ const SecondMainPage = () => {
       i18n.off("languageChanged", handleLanguageChange);
     };
   }, []);
-  const {t} = useTranslation();
-  const [isClient, setIsClient] = useState(false)
+  const { t } = useTranslation();
+  const [isClient, setIsClient] = useState(false);
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>
-
-    <Suspense >  <div className="w-full min-h-[200vh] flex flex-col items-center">
-            
-            <Navbar />
-            <Hero
-              heroText={`${t('wellnessInYourNeighborhood')}-`}
-              location={t('clinicaSanMiguel')}
-              heroTextConitnued={`, ${t('riverOaksBlvd')}`}
-            />
-            <WhyUs name={t('clinicaSanMiguel')} location={t('riverOaksBlvd')} />
-            <BookAppointment bgUrl="/Rectangle 13.png" />
-            <Reviews />
-            <Blogs />
-            <Footer />
-      
-          </div></Suspense>
+      <Suspense>
+        {" "}
+        <div className="w-full min-h-[200vh] flex flex-col items-center">
+          <Navbar />
+          <Hero
+            heroText={`${t("wellnessInYourNeighborhood")}-`}
+            location={t("clinicaSanMiguel")}
+            heroTextConitnued={`, ${t("riverOaksBlvd")}`}
+          />
+          <WhyUs name={t("clinicaSanMiguel")} location={t("riverOaksBlvd")} />
+          <BookAppointment bgUrl="/Rectangle 13.png" />
+          <Reviews />
+          <Blogs />
+          <Footer />
+        </div>
+      </Suspense>
     </LocaleContext.Provider>
-
   );
 };
 

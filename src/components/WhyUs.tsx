@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useTranslation } from "next-i18next";
 
-
 type WhyUsProps = {
   name: string;
   location: string;
@@ -10,44 +9,48 @@ type WhyUsProps = {
 
 const WhyUs = ({ name, location }: WhyUsProps) => {
   const [size, setSize] = useState(0);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   //choose the screen size
   const handleResize = () => {
+    // Your code that uses window
+
     setSize(window.innerWidth);
   };
 
   // create an event listener
   useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
-  const items =  [
+  const items = [
     {
-      title: 'serviceCovid19',
+      title: "serviceCovid19",
       icon: "/Coronavirus.png",
     },
     {
-      title: 'serviceDiabetes',
+      title: "serviceDiabetes",
       icon: "/Glucometer.png",
     },
     {
-      title: 'servicePrimaryCare',
+      title: "servicePrimaryCare",
       icon: "/Earth Care.png",
     },
     {
-      title: 'serviceInternalMedicine',
+      title: "serviceInternalMedicine",
       icon: "/Pill.png",
     },
     {
-      title: 'serviceBloodWork',
+      title: "serviceBloodWork",
       icon: "/Drop of Blood.png",
     },
     {
-      title: 'serviceWeightLoss',
+      title: "serviceWeightLoss",
       icon: "/Weight Kg.png",
     },
   ];
@@ -56,7 +59,8 @@ const WhyUs = ({ name, location }: WhyUsProps) => {
     <div className="w-full min-h-[200px] bg-white flex items-center justify-center py-10">
       <div className="w-[95%] max-w-[1500px] flex flex-col gap-16 items-center">
         <h3 className="text-3xl font-semibold text-black leading-normal text-center">
-          {t('whyChoose')} <span className="text-[#D01717]">{name}</span> {location}?
+          {t("whyChoose")} <span className="text-[#D01717]">{name}</span>{" "}
+          {location}?
         </h3>
         <div className="w-full flex justify-between items-center pb-16">
           <ChevronLeft className="text-[#525252]" size={50} />
