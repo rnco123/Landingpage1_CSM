@@ -4,16 +4,14 @@ import { User } from "lucide-react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
-import {
-  collection,
-  addDoc,
-  getDoc,
-  query,
-  onSnapshot,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import timeData from "../../public/time.json";
+import treatmentData from "../../public/treatment.json";
 
 type BookAppointmentProps = {
   bgUrl: string;
@@ -25,20 +23,36 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
   const [email, setEmail] = useState("");
   const [bookAppointment, setBookAppointment] = useState("");
   const [healthTreatment, setHealthTreatment] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(null);
   const [time, setTime] = useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setHealthTreatment(event.target.value);
+  };
+  const handleChangeTime = (event: SelectChangeEvent) => {
+    setTime(event.target.value);
+  };
 
   const handleSubmit = async () => {
     console.log("in submit");
+    if (
+      !phonenumber ||
+      !healthTreatment ||
+      !bookAppointment ||
+      !time ||
+      !email
+    ) {
+      return;
+    }
     try {
-      // setItems([...items, newItem]);
+      const datestring = JSON.stringify(date);
       await addDoc(collection(db, "appointment"), {
-        _phonenumber: phonenumber,
-        _email: email,
-        _bookAppointment: bookAppointment,
-        _healthTreatment: healthTreatment,
-        _date: date,
-        _time: time,
+        phonenumber: phonenumber,
+        email: email,
+        bookAppointment: bookAppointment,
+        healthTreatment: healthTreatment,
+        date: datestring,
+        time: time,
       });
       console.log("submitted");
     } catch (err) {
@@ -87,9 +101,14 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                           type="text"
                           className="border-b-2  text-black w-[90%] lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
                           placeholder={t("enterPhone")}
+                          inputMode="numeric"
                           value={phonenumber}
                           onChange={(e: any) => {
-                            setPhoneNumber(e.target.value);
+                            const inputValue = e.target.value.replace(
+                              /[^0-9]/g,
+                              ""
+                            );
+                            setPhoneNumber(inputValue);
                           }}
                         />
                       </div>
@@ -105,8 +124,13 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                           value={bookAppointment}
                           className="border-b-2 w-[90%] text-black lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
                           placeholder="Enter phone no. here"
+                          inputMode="numeric"
                           onChange={(e: any) => {
-                            setBookAppointment(e.target.value);
+                            const inputValue = e.target.value.replace(
+                              /[^0-9]/g,
+                              ""
+                            );
+                            setBookAppointment(inputValue);
                           }}
                         />
                       </div>
@@ -117,7 +141,7 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                         <span className="text-lg lg:text-xl font-bold text-[#333333]">
                           {t("date")}
                         </span>
-                        <input
+                        {/* <input
                           type="text"
                           value={date}
                           className="border-b-2 w-[90%] text-black lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
@@ -125,6 +149,11 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                           onChange={(e: any) => {
                             setDate(e.target.value);
                           }}
+                        /> */}
+
+                        <DatePicker
+                          value={date}
+                          onChange={(newValue) => setDate(newValue)}
                         />
                       </div>
                     </div>
@@ -153,7 +182,7 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                         <span className="text-lg lg:text-xl font-bold text-[#333333]">
                           {t("healthTreatment")}
                         </span>
-                        <input
+                        {/* <input
                           type="text"
                           className="border-b-2 w-[90%] text-black lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
                           placeholder={t("selectTreatment")}
@@ -161,7 +190,28 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                             setHealthTreatment(e.target.value);
                           }}
                           value={healthTreatment}
-                        />
+                        /> */}
+                        <FormControl variant="standard" sx={{ minWidth: 120 }}>
+                          {/* <InputLabel id="demo-simple-select-standard-label">
+                            selectTreatment
+                          </InputLabel> */}
+                          <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="demo-simple-select-standard"
+                            value={healthTreatment}
+                            onChange={handleChange}
+                            label="selectTreatment"
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            {treatmentData.map((treatment, index) => (
+                              <MenuItem value={treatment.name}>
+                                {treatment.name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
                       </div>
                     </div>
                     <div className="flex gap-2 items-start w-full">
@@ -170,7 +220,7 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                         <span className="text-lg lg:text-xl font-bold text-[#333333]">
                           {t("time")}
                         </span>
-                        <input
+                        {/* <input
                           type="text"
                           className="border-b-2 w-[90%] text-black lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
                           placeholder={t("selectTime")}
@@ -178,7 +228,28 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                             setTime(e.target.value);
                           }}
                           value={time}
-                        />
+                        /> */}
+                        <FormControl variant="standard" sx={{ minWidth: 80 }}>
+                          {/* <InputLabel id="demo-simple-select-standard-label">
+                            selectTreatment
+                          </InputLabel> */}
+                          <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="demo-simple-select-standard"
+                            value={time}
+                            onChange={handleChangeTime}
+                            label="selectTime"
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            {timeData.map((time, index) => (
+                              <MenuItem value={time?.time}>
+                                {time?.time}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
                       </div>
                     </div>
                   </div>
