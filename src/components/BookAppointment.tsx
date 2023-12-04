@@ -19,7 +19,7 @@ type BookAppointmentProps = {
 
 const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
   const { t } = useTranslation();
-  const [phonenumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [bookAppointment, setBookAppointment] = useState("");
   const [healthTreatment, setHealthTreatment] = useState("");
@@ -35,19 +35,13 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
 
   const handleSubmit = async () => {
     console.log("in submit");
-    if (
-      !phonenumber ||
-      !healthTreatment ||
-      !bookAppointment ||
-      !time ||
-      !email
-    ) {
+    if (!name || !healthTreatment || !bookAppointment || !time || !email) {
       return;
     }
     try {
       const datestring = JSON.stringify(date);
       await addDoc(collection(db, "appointment"), {
-        phonenumber: phonenumber,
+        namer: name,
         email: email,
         bookAppointment: bookAppointment,
         healthTreatment: healthTreatment,
@@ -95,20 +89,15 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                       <User size={30} />
                       <div className="flex flex-col w-full">
                         <span className="text-lg lg:text-xl font-bold text-[#333333]">
-                          {t("phone")}
+                          {t("name")}
                         </span>
                         <input
                           type="text"
                           className="border-b-2  text-black w-[90%] lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
-                          placeholder={t("enterPhone")}
-                          inputMode="numeric"
-                          value={phonenumber}
+                          placeholder={t("John Wilson")}
+                          value={name}
                           onChange={(e: any) => {
-                            const inputValue = e.target.value.replace(
-                              /[^0-9]/g,
-                              ""
-                            );
-                            setPhoneNumber(inputValue);
+                            setName(e.target.value);
                           }}
                         />
                       </div>
@@ -117,13 +106,13 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                       <User size={30} />
                       <div className="flex flex-col w-full">
                         <span className="text-lg lg:text-xl font-bold text-[#333333]">
-                          {t("bookAppointment")}
+                          {t("Phone Number")}
                         </span>
                         <input
                           type="text"
                           value={bookAppointment}
                           className="border-b-2 w-[90%] text-black lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
-                          placeholder="Enter phone no. here"
+                          placeholder="+1 432 432 4321"
                           inputMode="numeric"
                           onChange={(e: any) => {
                             const inputValue = e.target.value.replace(
@@ -169,7 +158,7 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                           type="text"
                           value={email}
                           className="border-b-2 w-[90%] text-black lg:w-[75%] outline-none p-1 border-[#D01717] font-medium text-sm lg:text-base"
-                          placeholder={t("enterEmail")}
+                          placeholder={t("johnwilson@example.com")}
                           onChange={(e: any) => {
                             setEmail(e.target.value);
                           }}
@@ -237,10 +226,11 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             value={time}
+                            defaultValue={"none"}
                             onChange={handleChangeTime}
                             label="selectTime"
                           >
-                            <MenuItem value="">
+                            <MenuItem value={"none"}>
                               <em>None</em>
                             </MenuItem>
                             {timeData.map((time, index) => (
