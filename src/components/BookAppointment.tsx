@@ -74,7 +74,7 @@ const BookAppointment = ({ bgUrl }: BookAppointmentProps) => {
             ))}
           </div>
 
-          <div className="w-full flex bg-white rounded-xl min-h-[40vh] absolute top-[70%] shadow-md">
+          <div className="w-full flex bg-white rounded-xl min-h-[40vh] my-4 absolute top-[70%] shadow-md">
             <div className="flex-[3] px-8 lg:px-16 py-12 flex flex-col justify-between gap-12">
               <h4 className="text-[#A71A1E] text-lg lg:text-xl font-extrabold">
                 {t("quickAssessment")}
