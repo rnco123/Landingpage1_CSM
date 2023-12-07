@@ -10,7 +10,7 @@
   "discoverHaven": "Discover a haven where global medical expertise and the care of dedicated professionals ease your needs, making all your treatments comforting and stress-free.",
   "makeAppointment": "Make Appointment",
   "virtualVisit": "Virtual Visit",
-  "whyChoose":"Why Choose",
+  "whyChoose": "Why Choose",
   "serviceCovid19": "Covid-19",
   "serviceDiabetes": "Diabetes",
   "servicePrimaryCare": "Primary Care",
@@ -38,13 +38,13 @@
   "bilingual": "Bilingual",
   "reviewName1": "Hannah Schmitt",
   "reviewDate1": "10-December-23",
-  "reviewDesc1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsam distinctio soluta aliquam adipisci rerum",
+  "reviewDesc1": "What sets Clinica San Miguel apart is the people—the doctors and nurses aren't just experts; they genuinely care.",
   "reviewName2": "Hannah Schmitt",
   "reviewDate2": "12-November-23",
-  "reviewDesc2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsam distinctio soluta aliquam adipisci rerum assumenda beatae perspiciatis! Eligendi, hic. Illum repellat voluptate ut fugiat veritatis corrupti nostrum ullam reiciendis saepe maiores?",
+  "reviewDesc2": "Clinica San Miguel stands out for its commitment to medical excellence. My recent visit for a routine check-up impressed me with the medical team's professionalism and expertise. The doctors and nurses demonstrated a deep understanding of their respective fields, and their attention to detail instilled confidence in the care provided.",
   "reviewName3": "Hannah Schmitt",
   "reviewDate3": "1-September-23",
-  "reviewDesc3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsam distinctio s Fuga ipsam distinctio s",
+  "reviewDesc3": "The medical team here knows their job very well; you can tell they have the expertise. The place is modern and high-tech, which is reassuring, and they offer every kind of medical service.",
   "title1": "The importance of Routine Mammogram",
   "title2": "What to Expect During a School Physical Exam",
   "title3": "Why You Shouldn't Skip Your Well-Woman Exam",
@@ -63,8 +63,4 @@
   "allRightsReserved": "© All rights reserved to Clinica San Miguel 2023",
   "viewAll": "View All",
   "happyHealthyPatients": "Happy, Healthy Patients"
-
-
-
-  
 }
