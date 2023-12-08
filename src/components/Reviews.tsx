@@ -10,27 +10,26 @@ import BgWhiteRight from "@/assets/BgWhiteRight";
 import BgRedRight from "@/assets/BgRedRight";
 import { useTranslation } from "next-i18next";
 
-
 const Reviews = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const reviewList = [
     {
       nameKey: "reviewName1",
       dateKey: "reviewDate1",
       descKey: "reviewDesc1",
-      image: "/Ellipse 16.png",
+      image: "/girl1.jpg",
     },
     {
       nameKey: "reviewName2",
       dateKey: "reviewDate2",
       descKey: "reviewDesc2",
-      image: "/Ellipse 16.png",
+      image: "/girl2.jpg",
     },
     {
       nameKey: "reviewName3",
       dateKey: "reviewDate3",
       descKey: "reviewDesc3",
-      image: "/Ellipse 16.png",
+      image: "/girl3.jpg",
     },
   ];
 
@@ -41,7 +40,7 @@ const Reviews = () => {
           <ChevronLeft className="text-[#525252]" size={50} />
           <div className="flex flex-col items-center gap-8">
             <span className="text-2xl font-semibold text-[#000000]">
-              {t('happyHealthyPatients')}
+              {t("happyHealthyPatients")}
             </span>
             <div className="w-24 flex justify-between items-center">
               <div className="h-4 w-4 bg-[#D01717] rounded-full" />
@@ -71,10 +70,12 @@ const Reviews = () => {
             </div>
             <div className="w-full h-full items-center z-20 relative flex flex-col justify-center pl-5">
               <img
-                src="/Ellipse 16.png"
-                className="h-20 w-20 z-10 absolute -top-4"
+                src={reviewList[0].image}
+                className="h-20 w-20 z-10 absolute -top-4 rounded-[50px] "
               />
-              <h4 className="text-xl text-[#525252]">{t(reviewList[0].nameKey)}</h4>
+              <h4 className="text-xl text-[#525252]">
+                {t(reviewList[0].nameKey)}
+              </h4>
               <span className="text-[#525252] text-xs">
                 {t(reviewList[0].dateKey)}
               </span>
@@ -93,15 +94,19 @@ const Reviews = () => {
             </div>
             <div className="w-full h-full items-center z-20 relative flex flex-col justify-center pl-5">
               <img
-                src="/Ellipse 16.png"
-                className="h-20 w-20 z-10 absolute -top-5"
+                src={reviewList[1].image}
+                className="h-20 w-20 z-10 absolute -top-5 rounded-[50px]"
               />
-              <h4 className="text-xl text-[#525252]">{t(reviewList[1].nameKey)}</h4>
+              <h4 className="text-xl text-[#525252]">
+                {t(reviewList[1].nameKey)}
+              </h4>
               <span className="text-[#525252] text-xs">
                 {t(reviewList[1].dateKey)}
               </span>
               <span className="text-[#D01717] text-5xl">❝</span>
-              <p className="w-[80%] text-[#525252]">{t(reviewList[1].descKey)}</p>
+              <p className="w-[80%] text-[#525252]">
+                {t(reviewList[1].descKey)}
+              </p>
             </div>
           </div>
           <div className="relative w-[90%] lg:w-[303px] h-full ">
@@ -113,10 +118,12 @@ const Reviews = () => {
             </div>
             <div className="w-full h-full items-center z-20 relative flex flex-col justify-center pl-5">
               <img
-                src="/Ellipse 16.png"
-                className="h-20 w-20 z-10 absolute -top-5"
+                src={reviewList[2].image}
+                className="h-20 w-20 z-10 absolute -top-5 rounded-[50px] "
               />
-              <h4 className="text-xl text-[#525252]">{t(reviewList[2].nameKey)}</h4>
+              <h4 className="text-xl text-[#525252]">
+                {t(reviewList[2].nameKey)}
+              </h4>
               <span className="text-[#525252] text-xs">
                 {t(reviewList[2].dateKey)}
               </span>
