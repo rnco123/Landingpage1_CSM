@@ -36,7 +36,7 @@ const Reviews = () => {
   return (
     <div className="w-full flex justify-center items-center py-20 pt-48 bg-[#F9F8F6]">
       <div className="w-full max-w-[1400px] flex flex-col gap-10 items-center">
-        <div className="flex max-w-[800px] w-full justify-between items-start mb-16">
+        {/* <div className="flex max-w-[800px] w-full justify-between items-start mb-16">
           <ChevronLeft className="text-[#525252]" size={50} />
           <div className="flex flex-col items-center gap-8">
             <span className="text-2xl font-semibold text-[#000000]">
@@ -51,7 +51,7 @@ const Reviews = () => {
             </div>
           </div>
           <ChevronRight className="text-[#525252]" size={50} />
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-10 lg:gap-5 lg:flex-row items-center w-full h-[450px] lg:justify-between">
           {/* {reviewList?.slice(0, 3)?.map((review, index) => {
